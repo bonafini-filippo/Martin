@@ -1,0 +1,86 @@
+---
+// Galleria immagini con hover effect sarcastico
+// Usando le foto locali di Martin dalla cartella public
+
+const galleryItems = [
+  {
+    image: "/2.jpg",
+    hoverText: "Non guardarmi"
+  },
+  {
+    image: "/3.jpg",
+    hoverText: "Troppo bello per te"
+  },
+  {
+    image: "/4.jpg",
+    hoverText: "Sei ancora qui?"
+  },
+  {
+    image: "/5.jpg",
+    hoverText: "Noia suprema"
+  },
+  {
+    image: "/6.jpg",
+    hoverText: "Indegno della mia presenza"
+  },
+  {
+    image: "/7.jpg",
+    hoverText: "Non mi interessi"
+  },
+  {
+    image: "/8.jpg",
+    hoverText: "Vai via"
+  },
+  {
+    image: "/9.jpg",
+    hoverText: "Che vuoi ancora?"
+  },
+  {
+    image: "/10.jpg",
+    hoverText: "Perfezione assoluta"
+  }
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {galleryItems.map((item, index) => (
+    <div class="gallery-item group relative aspect-square overflow-hidden rounded-lg border border-amber-500/20 hover:border-amber-500/60 transition-all duration-300">
+      <!-- Immagine -->
+      <img
+        src={item.image}
+        alt={`Martin momento ${index + 1}`}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        loading="lazy"
+      />
+
+      <!-- Overlay con testo sarcastico -->
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <p class="text-amber-400 text-xl font-bold text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+          {item.hoverText}
+        </p>
+      </div>
+
+      <!-- Bordo dorato animato al hover -->
+      <div class="absolute inset-0 border-2 border-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .gallery-item {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.5);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover::after {
+    box-shadow: 0 10px 30px 0 rgba(251, 191, 36, 0.3);
+  }
+</style>

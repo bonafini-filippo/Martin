@@ -1,0 +1,156 @@
+---
+// Carousel di citazioni ironiche di Martin
+// Con navigazione manuale e auto-play
+
+const quotes = [
+  "Sei qui per me, non io per te.",
+  "Ogni casa è mia. Anche la tua.",
+  "Sì, sono più bello di te.",
+  "Non è arroganza se è la verità.",
+  "Ti concedo il privilegio di servirmi.",
+  "Il mondo ruota intorno a me. Letteralmente.",
+  "Non ti calcolo, ma apprezzo i croccantini."
+];
+---
+
+<div class="relative max-w-4xl mx-auto px-8">
+  <!-- Quote Container -->
+  <div class="relative min-h-[200px] flex items-center justify-center">
+    <div id="quotes-container" class="text-center">
+      {quotes.map((quote, index) => (
+        <blockquote
+          class={`quote-slide ${index === 0 ? 'active' : ''} absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500`}
+          data-index={index}
+        >
+          <svg class="w-12 h-12 text-amber-500/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+
+          <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-amber-400 mb-6 italic">
+            "{quote}"
+          </p>
+
+          <cite class="text-gray-400 text-sm md:text-base not-italic">
+            — Martin, Sua Maestà Felina
+          </cite>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="flex justify-center gap-2 mt-8">
+    {quotes.map((_, index) => (
+      <button
+        class="quote-dot w-2 h-2 rounded-full bg-amber-500/30 hover:bg-amber-500/60 transition-all duration-300"
+        data-index={index}
+        aria-label={`Vai alla citazione ${index + 1}`}
+      >
+      </button>
+    ))}
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button
+    id="prev-quote"
+    class="absolute left-0 top-1/2 -translate-y-1/2 text-amber-500 hover:text-amber-400 transition-colors p-2 hover:scale-110 transform duration-200"
+    aria-label="Citazione precedente"
+  >
+    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <button
+    id="next-quote"
+    class="absolute right-0 top-1/2 -translate-y-1/2 text-amber-500 hover:text-amber-400 transition-colors p-2 hover:scale-110 transform duration-200"
+    aria-label="Citazione successiva"
+  >
+    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  let currentQuote = 0;
+  const quotes = document.querySelectorAll('.quote-slide');
+  const dots = document.querySelectorAll('.quote-dot');
+  const totalQuotes = quotes.length;
+
+  function showQuote(index: number) {
+    // Nascondi tutte le quote
+    quotes.forEach(quote => {
+      quote.classList.remove('active');
+      quote.classList.add('opacity-0');
+    });
+
+    // Rimuovi active da tutti i dots
+    dots.forEach(dot => {
+      dot.classList.remove('bg-amber-500', 'w-8');
+      dot.classList.add('bg-amber-500/30', 'w-2');
+    });
+
+    // Mostra la quote corrente
+    quotes[index].classList.add('active');
+    quotes[index].classList.remove('opacity-0');
+
+    // Attiva il dot corrente
+    dots[index].classList.remove('bg-amber-500/30', 'w-2');
+    dots[index].classList.add('bg-amber-500', 'w-8');
+  }
+
+  function nextQuote() {
+    currentQuote = (currentQuote + 1) % totalQuotes;
+    showQuote(currentQuote);
+  }
+
+  function prevQuote() {
+    currentQuote = (currentQuote - 1 + totalQuotes) % totalQuotes;
+    showQuote(currentQuote);
+  }
+
+  // Event listeners per frecce
+  document.getElementById('next-quote')?.addEventListener('click', nextQuote);
+  document.getElementById('prev-quote')?.addEventListener('click', prevQuote);
+
+  // Event listeners per dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentQuote = index;
+      showQuote(currentQuote);
+    });
+  });
+
+  // Auto-play ogni 5 secondi
+  let autoPlayInterval = setInterval(nextQuote, 5000);
+
+  // Pausa auto-play al hover
+  const quotesContainer = document.getElementById('quotes-container');
+  quotesContainer?.addEventListener('mouseenter', () => {
+    clearInterval(autoPlayInterval);
+  });
+
+  quotesContainer?.addEventListener('mouseleave', () => {
+    autoPlayInterval = setInterval(nextQuote, 5000);
+  });
+
+  // Inizializza il primo dot come attivo
+  showQuote(0);
+</script>
+
+<style>
+  .quote-slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  .quote-slide.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .quote-dot {
+    transition: all 0.3s ease;
+  }
+</style>

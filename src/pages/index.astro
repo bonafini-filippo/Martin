@@ -1,11 +1,288 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Gallery from '../components/Gallery.astro';
+import Quotes from '../components/Quotes.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <Navbar />
+
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Immagine Hero -->
+        <div class="order-2 lg:order-1 flex justify-center">
+          <div class="relative group">
+            <!-- Glow effect -->
+            <div class="absolute -inset-4 bg-amber-500/20 rounded-full blur-3xl group-hover:bg-amber-500/30 transition-all duration-500"></div>
+
+            <!-- Immagine principale -->
+            <div class="relative rounded-full overflow-hidden border-4 border-amber-500/50 w-72 h-72 md:w-96 md:h-96 shadow-2xl shadow-amber-500/20">
+              <img
+                src="/1.jpg"
+                alt="Martin - Il Gatto Maestoso"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
+            </div>
+
+            <!-- Corona decorativa -->
+            <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-6xl animate-bounce">
+              👑
+            </div>
+          </div>
+        </div>
+
+        <!-- Testo Hero -->
+        <div class="order-1 lg:order-2 text-center lg:text-left space-y-8">
+          <div class="space-y-4">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+              Io sono
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
+                Martin
+              </span>
+            </h1>
+            <p class="text-2xl md:text-3xl text-amber-400 font-light italic">
+              Bello. Antipatico. Punto.
+            </p>
+          </div>
+
+          <p class="text-gray-300 text-lg md:text-xl max-w-xl mx-auto lg:mx-0">
+            Non hai scelto di essere qui. Io ti ho concesso questo privilegio.
+          </p>
+
+          <div class="flex gap-4 justify-center lg:justify-start">
+            <a
+              href="#gallery"
+              class="group px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900 font-bold rounded-full hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transform"
+            >
+              Ammirami
+              <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
+            <a
+              href="#about"
+              class="px-8 py-4 border-2 border-amber-500/50 text-amber-400 font-bold rounded-full hover:bg-amber-500/10 hover:border-amber-500 transition-all duration-300"
+            >
+              Chi sono
+            </a>
+          </div>
+
+          <!-- Stats decorativi -->
+          <div class="grid grid-cols-3 gap-4 pt-8 border-t border-amber-500/20">
+            <div class="text-center">
+              <p class="text-3xl font-bold text-amber-400">∞</p>
+              <p class="text-gray-500 text-sm">Bellezza</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-amber-400">100%</p>
+              <p class="text-gray-500 text-sm">Antipatia</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-amber-400">0</p>
+              <p class="text-gray-500 text-sm">Interesse per te</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Chi <span class="text-amber-400">Sono</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Non mi interessi, ma visto che insisti ti racconto qualcosa.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-8">
+        <div class="bg-gray-900 border border-amber-500/20 rounded-2xl p-8 hover:border-amber-500/40 transition-all duration-300">
+          <p class="text-gray-300 text-lg leading-relaxed">
+            Sono <strong class="text-amber-400">Martin</strong>, e probabilmente sono la creatura più affascinante che tu abbia mai incontrato.
+            Non è presunzione, è semplicemente un dato di fatto oggettivo che gli umani faticano ad accettare.
+          </p>
+        </div>
+
+        <div class="bg-gray-900 border border-amber-500/20 rounded-2xl p-8 hover:border-amber-500/40 transition-all duration-300">
+          <p class="text-gray-300 text-lg leading-relaxed">
+            La mia giornata tipo? Dedicata alle attività nobili che merito: sonnecchiare su superfici proibite,
+            ignorare platealmente chi mi chiama, e concedere rare apparizioni quando il cibo è degno della mia attenzione.
+          </p>
+        </div>
+      </div>
+
+      <!-- Attività preferite -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <!-- Mangiare -->
+        <div class="group bg-gray-900 border border-amber-500/20 rounded-2xl p-8 text-center hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 hover:scale-105 transform">
+          <div class="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">🍖</div>
+          <h3 class="text-2xl font-bold text-amber-400 mb-3">Mangiare</h3>
+          <p class="text-gray-400">
+            Solo il meglio. E solo quando lo decido io. Il servizio deve essere impeccabile.
+          </p>
+        </div>
+
+        <!-- Dormire -->
+        <div class="group bg-gray-900 border border-amber-500/20 rounded-2xl p-8 text-center hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 hover:scale-105 transform">
+          <div class="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">😴</div>
+          <h3 class="text-2xl font-bold text-amber-400 mb-3">Dormire</h3>
+          <p class="text-gray-400">
+            18 ore al giorno non sono un'esagerazione. Sono un minimo sindacale per la mia bellezza.
+          </p>
+        </div>
+
+        <!-- Ignorarti -->
+        <div class="group bg-gray-900 border border-amber-500/20 rounded-2xl p-8 text-center hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 hover:scale-105 transform">
+          <div class="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">🙄</div>
+          <h3 class="text-2xl font-bold text-amber-400 mb-3">Ignorarti</h3>
+          <p class="text-gray-400">
+            La mia attività preferita. Non prenderla sul personale. Anzi sì, prendila pure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          La mia <span class="text-amber-400">Galleria</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Momento di grazia visiva. Preparati ad essere abbagliato.
+        </p>
+      </div>
+
+      <Gallery />
+
+      <p class="text-center text-gray-500 text-sm mt-8 italic">
+        Ogni foto cattura solo una frazione della mia magnificenza.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quotes Section -->
+  <section id="quotes" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Citazioni <span class="text-amber-400">Celebri</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Perle di saggezza felina che dovresti tatuarti.
+        </p>
+      </div>
+
+      <Quotes />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          <span class="text-amber-400">Contatti</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Se vuoi parlare con il mio staff umano (non con me, ovviamente) scrivi qui.
+        </p>
+      </div>
+
+      <div class="bg-gray-900 border border-amber-500/20 rounded-2xl p-8 md:p-12">
+        <form class="space-y-6" id="contact-form">
+          <!-- Nome -->
+          <div>
+            <label for="name" class="block text-amber-400 font-medium mb-2">
+              Il tuo nome (non che mi importi)
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 bg-gray-800 border border-amber-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
+              placeholder="Mario Rossi"
+            />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-amber-400 font-medium mb-2">
+              Email (per la risposta del mio staff)
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 bg-gray-800 border border-amber-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
+              placeholder="tuo@email.com"
+            />
+          </div>
+
+          <!-- Messaggio -->
+          <div>
+            <label for="message" class="block text-amber-400 font-medium mb-2">
+              Il tuo messaggio (sii breve)
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="w-full px-4 py-3 bg-gray-800 border border-amber-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all resize-none"
+              placeholder="Scrivi qualcosa che potrebbe interessare al mio staff..."
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900 font-bold rounded-lg hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transform"
+          >
+            Invia (forse lo leggerò)
+          </button>
+        </form>
+
+        <p class="text-gray-500 text-sm text-center mt-6 italic">
+          Disclaimer: Martin non legge le email. Probabilmente sta dormendo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
+
+<script>
+  // Form handling (basic validation)
+  const form = document.getElementById('contact-form');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // In un caso reale, qui invieresti i dati a un backend
+    alert('Messaggio ricevuto! Il mio staff umano ti risponderà... forse. Martin è troppo impegnato a dormire.');
+
+    // Reset form
+    (e.target as HTMLFormElement).reset();
+  });
+</script>
