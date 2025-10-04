@@ -1,0 +1,153 @@
+---
+// Il "Martin-Metro": Misuratore dell'umore di Martin
+// Indicatore interattivo e ironico dello stato d'animo felino
+---
+
+<div class="max-w-4xl mx-auto">
+  <!-- Intro -->
+  <div class="text-center mb-8">
+    <p class="text-gray-400 text-lg">
+      Consulta il <span class="text-amber-400 font-bold">Martin-Metro™</span> prima di interagire
+    </p>
+    <p class="text-gray-500 text-sm italic mt-2">
+      (Non che cambi qualcosa, ma almeno sarai preparato)
+    </p>
+  </div>
+
+  <!-- Mood Meter -->
+  <div class="relative bg-gray-900 border border-amber-500/20 rounded-2xl p-8 md:p-12">
+    <!-- Scala visiva -->
+    <div class="relative h-8 bg-gray-800 rounded-full overflow-hidden mb-8">
+      <!-- Gradiente di colore -->
+      <div class="absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-30"></div>
+
+      <!-- Indicatore animato -->
+      <div
+        id="mood-indicator"
+        class="absolute top-0 bottom-0 w-1 bg-amber-400 shadow-lg shadow-amber-500/50 transition-all duration-1000 ease-in-out"
+        style="left: 15%;"
+      >
+        <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-amber-400 rounded-full animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- Labels scala -->
+    <div class="flex justify-between text-xs md:text-sm mb-8">
+      <span class="text-red-400 font-medium">Apocalittico</span>
+      <span class="text-yellow-400 font-medium">Tollerabile</span>
+      <span class="text-green-400 font-medium">Fantastico*</span>
+    </div>
+
+    <!-- Stato attuale -->
+    <div class="text-center p-6 bg-gray-800/50 rounded-xl border border-amber-500/10">
+      <div class="text-6xl mb-4" id="mood-emoji">😾</div>
+      <h3 class="text-2xl font-bold text-amber-400 mb-2" id="mood-title">
+        Moderatamente Infastidito
+      </h3>
+      <p class="text-gray-400 italic" id="mood-description">
+        Non disturbare. Anzi, porta cibo e poi vattene.
+      </p>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="mt-6 text-center">
+      <p class="text-gray-500 text-xs">
+        * "Fantastico" significa semplicemente "non ti graffierò... ancora"
+      </p>
+    </div>
+  </div>
+
+  <!-- Pulsante per aggiornare (ironico) -->
+  <div class="text-center mt-6">
+    <button
+      id="refresh-mood"
+      class="px-6 py-3 bg-gray-800 border border-amber-500/30 text-amber-400 rounded-lg hover:bg-gray-700 hover:border-amber-500 transition-all duration-300 text-sm font-medium"
+    >
+      🔄 Controlla di nuovo (spoiler: sempre antipatico)
+    </button>
+  </div>
+</div>
+
+<script>
+  // Stati d'animo possibili
+  const moods = [
+    {
+      emoji: "😾",
+      title: "Moderatamente Infastidito",
+      description: "Non disturbare. Anzi, porta cibo e poi vattene.",
+      position: 15
+    },
+    {
+      emoji: "😼",
+      title: "Superiore a Te",
+      description: "Come sempre. Puoi guardarmi, ma da lontano.",
+      position: 25
+    },
+    {
+      emoji: "🙄",
+      title: "Profondamente Annoiato",
+      description: "La tua presenza è insignificante. Porta almeno qualcosa da mangiare.",
+      position: 35
+    },
+    {
+      emoji: "😒",
+      title: "Deluso dall'Umanità",
+      description: "Ancora? Davvero? Questo è il meglio che sai fare?",
+      position: 45
+    },
+    {
+      emoji: "😤",
+      title: "Lievemente Irritato",
+      description: "Il servizio oggi lascia a desiderare. Inaccettabile.",
+      position: 55
+    },
+    {
+      emoji: "😑",
+      title: "Neutrale (ma Giudicante)",
+      description: "Ti sto osservando. E non sono impressionato.",
+      position: 65
+    },
+    {
+      emoji: "😏",
+      title: "Misteriosamente Soddisfatto",
+      description: "Ho fatto qualcosa. Non lo scoprirai fino a stasera.",
+      position: 75
+    },
+    {
+      emoji: "😸",
+      title: "Benevolente (Temporaneo)",
+      description: "Ho mangiato bene. Forse ti tollererò per 5 minuti.",
+      position: 85
+    }
+  ];
+
+  let currentMoodIndex = 0;
+
+  function updateMood(index: number) {
+    const mood = moods[index];
+    const indicator = document.getElementById('mood-indicator');
+    const emoji = document.getElementById('mood-emoji');
+    const title = document.getElementById('mood-title');
+    const description = document.getElementById('mood-description');
+
+    if (indicator && emoji && title && description) {
+      indicator.style.left = `${mood.position}%`;
+      emoji.textContent = mood.emoji;
+      title.textContent = mood.title;
+      description.textContent = mood.description;
+    }
+  }
+
+  // Cambio mood random al click
+  document.getElementById('refresh-mood')?.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * moods.length);
+    currentMoodIndex = randomIndex;
+    updateMood(currentMoodIndex);
+  });
+
+  // Auto-aggiornamento ogni 10 secondi (per simulare i cambi d'umore)
+  setInterval(() => {
+    currentMoodIndex = (currentMoodIndex + 1) % moods.length;
+    updateMood(currentMoodIndex);
+  }, 10000);
+</script>

@@ -1,0 +1,128 @@
+---
+// FAQ ironiche su Martin
+// Domande frequenti con risposte sarcastiche
+
+const faqs = [
+  {
+    question: "Martin è davvero così antipatico?",
+    answer: "No. È peggio. Ma in modo adorabile. O almeno così dicono gli umani che mi servono.",
+    emoji: "😼"
+  },
+  {
+    question: "Posso accarezzare Martin?",
+    answer: "Tecnicamente sì. Praticamente no. Decido io quando, dove e per quanto tempo. Solitamente la risposta è 'mai'.",
+    emoji: "🚫"
+  },
+  {
+    question: "Qual è il cibo preferito di Martin?",
+    answer: "Quello che costa di più e che finirò per non mangiare comunque. Preferisco le bustine economiche, ma non dirlo in giro.",
+    emoji: "🍽️"
+  },
+  {
+    question: "Martin ama il suo umano?",
+    answer: "Definisci 'amare'. Lo tollero. È addestrato bene. Mi porta il cibo puntualmente. Direi che siamo pari.",
+    emoji: "❤️"
+  },
+  {
+    question: "Perché Martin corre alle 3 di notte?",
+    answer: "Perché posso. Perché voglio. Perché è divertente svegliarvi. Avanti un'altra domanda stupida.",
+    emoji: "🏃"
+  },
+  {
+    question: "Martin gioca con altri gatti?",
+    answer: "Altri gatti? Inferior. Non mi abbasso a tale livello. Sono un lupo solitario. Un felino solitario. Eccetera.",
+    emoji: "👑"
+  },
+  {
+    question: "Come conquistare il cuore di Martin?",
+    answer: "Impossibile. Non ho un cuore. Ho solo uno stomaco, un ego e una lista infinita di pretese. Buona fortuna.",
+    emoji: "💔"
+  },
+  {
+    question: "Martin fa i bisogni fuori dalla lettiera?",
+    answer: "Solo quando è troppo piena (secondo me), troppo pulita (sospetto), o quando voglio fare un dispetto. Dipende dalla giornata.",
+    emoji: "📦"
+  }
+];
+---
+
+<div class="max-w-4xl mx-auto">
+  <div class="space-y-4">
+    {faqs.map((faq, index) => (
+      <div class="faq-item group bg-gray-900 border border-amber-500/20 rounded-xl overflow-hidden hover:border-amber-500 transition-all duration-300">
+        {/* Domanda - cliccabile */}
+        <button
+          class="faq-question w-full px-6 py-5 flex items-start justify-between gap-4 text-left hover:bg-gray-800 transition-colors duration-300"
+          data-index={index}
+        >
+          <div class="flex items-start gap-4 flex-1">
+            <span class="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              {faq.emoji}
+            </span>
+            <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors duration-300 pt-1">
+              {faq.question}
+            </h3>
+          </div>
+
+          {/* Icona expand/collapse */}
+          <svg
+            class="faq-icon w-6 h-6 text-amber-500 transform transition-transform duration-300 flex-shrink-0 mt-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {/* Risposta - nascosta di default */}
+        <div class="faq-answer hidden">
+          <div class="px-6 pb-5 pl-20">
+            <p class="text-gray-400 leading-relaxed italic">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* CTA finale */}
+  <div class="mt-12 text-center p-8 bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-xl">
+    <p class="text-xl font-bold text-amber-400 mb-3">
+      Hai altre domande?
+    </p>
+    <p class="text-gray-400 italic">
+      La risposta è probabilmente "no" o "non mi interessa", ma puoi sempre provare.
+    </p>
+    <a
+      href="#contact"
+      class="inline-block mt-4 px-6 py-3 bg-amber-500 text-gray-900 font-bold rounded-lg hover:bg-amber-400 transition-all duration-300 hover:scale-105 transform"
+    >
+      Contatta lo Staff Umano →
+    </a>
+  </div>
+</div>
+
+<script>
+  // Toggle FAQ answers
+  document.querySelectorAll('.faq-question').forEach((button) => {
+    button.addEventListener('click', () => {
+      const faqItem = button.closest('.faq-item');
+      const answer = faqItem?.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+
+      // Chiudi tutte le altre FAQ
+      document.querySelectorAll('.faq-item').forEach((item) => {
+        if (item !== faqItem) {
+          item.querySelector('.faq-answer')?.classList.add('hidden');
+          item.querySelector('.faq-icon')?.classList.remove('rotate-180');
+        }
+      });
+
+      // Toggle la FAQ corrente
+      answer?.classList.toggle('hidden');
+      icon?.classList.toggle('rotate-180');
+    });
+  });
+</script>

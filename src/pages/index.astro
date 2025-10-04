@@ -4,6 +4,12 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Gallery from '../components/Gallery.astro';
 import Quotes from '../components/Quotes.astro';
+import FelineRules from '../components/FelineRules.astro';
+import MartinMeter from '../components/MartinMeter.astro';
+import AchievementBadges from '../components/AchievementBadges.astro';
+import DailySchedule from '../components/DailySchedule.astro';
+import FAQSection from '../components/FAQSection.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
 ---
 
 <Layout>
@@ -191,6 +197,102 @@ import Quotes from '../components/Quotes.astro';
       </div>
 
       <Quotes />
+    </div>
+  </section>
+
+  <!-- Martin Meter Section -->
+  <section id="mood" class="py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Il <span class="text-amber-400">Martin-Metro</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Misuratore scientifico del mio umore (spoiler: sempre superiore)
+        </p>
+      </div>
+
+      <MartinMeter />
+    </div>
+  </section>
+
+  <!-- Feline Rules Section -->
+  <section id="rules" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Le mie <span class="text-amber-400">Regole</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Leggi attentamente. Verranno applicate rigorosamente.
+        </p>
+      </div>
+
+      <FelineRules />
+    </div>
+  </section>
+
+  <!-- Achievement Badges Section -->
+  <section id="achievements" class="py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          I miei <span class="text-amber-400">Traguardi</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Achievement sbloccati grazie alla mia naturale superiorità.
+        </p>
+      </div>
+
+      <AchievementBadges />
+    </div>
+  </section>
+
+  <!-- Daily Schedule Section -->
+  <section id="schedule" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          La mia <span class="text-amber-400">Giornata Tipo</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Un programma rigidamente seguito. Da me. Non da te.
+        </p>
+      </div>
+
+      <DailySchedule />
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Cosa dicono di <span class="text-amber-400">Me</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Testimonianze autentiche* dai miei umani servitori.
+        </p>
+      </div>
+
+      <TestimonialSlider />
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          Domande <span class="text-amber-400">Frequenti</span>
+        </h2>
+        <p class="text-gray-400 text-lg italic max-w-2xl mx-auto">
+          Le risposte che non sapevi di non volere sapere.
+        </p>
+      </div>
+
+      <FAQSection />
     </div>
   </section>
 

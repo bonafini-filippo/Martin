@@ -1,0 +1,87 @@
+---
+// Sezione: Le Regole di Martin
+// Lista ironica delle regole che tutti devono seguire
+
+const rules = [
+  {
+    number: "1",
+    title: "Orario dei pasti",
+    description: "Alle 7:00 AM precise. Non un minuto dopo. La sveglia? Problema tuo.",
+    icon: "⏰"
+  },
+  {
+    number: "2",
+    title: "Zona proibita",
+    description: "Il tuo letto è mio. Il mio letto è mio. Il divano è mio. Tutto è mio.",
+    icon: "🛏️"
+  },
+  {
+    number: "3",
+    title: "Coccole",
+    description: "Solo quando lo decido io. Non provare a toccarmi se sto dormendo. O se sono sveglio.",
+    icon: "🚫"
+  },
+  {
+    number: "4",
+    title: "Privacy",
+    description: "Il bagno è un luogo sacro. Devo supervisionare. Ogni. Singola. Volta.",
+    icon: "🚪"
+  },
+  {
+    number: "5",
+    title: "Giochi",
+    description: "Qualsiasi cosa tu ami può diventare il mio giocattolo. Soprattutto se è fragile.",
+    icon: "🎾"
+  },
+  {
+    number: "6",
+    title: "Ospiti",
+    description: "Devono adorarmi immediatamente. Se non piaccio loro, non sono degni della tua casa.",
+    icon: "👑"
+  }
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {rules.map((rule) => (
+    <div class="group relative bg-gradient-to-br from-gray-900 to-gray-800 border border-amber-500/20 rounded-xl p-6 hover:border-amber-500 transition-all duration-300 hover:scale-105 transform overflow-hidden">
+      <!-- Numero regola in background -->
+      <div class="absolute -top-4 -right-4 text-9xl font-bold text-amber-500/5 group-hover:text-amber-500/10 transition-colors duration-300">
+        {rule.number}
+      </div>
+
+      <!-- Contenuto -->
+      <div class="relative z-10">
+        <!-- Header con icona -->
+        <div class="flex items-start gap-4 mb-4">
+          <div class="text-5xl group-hover:scale-110 transition-transform duration-300">
+            {rule.icon}
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-amber-400 font-bold text-sm">REGOLA #{rule.number}</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors duration-300">
+              {rule.title}
+            </h3>
+          </div>
+        </div>
+
+        <!-- Descrizione -->
+        <p class="text-gray-400 text-sm leading-relaxed">
+          {rule.description}
+        </p>
+
+        <!-- Bordo animato -->
+        <div class="absolute inset-0 border-2 border-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<!-- Disclaimer finale -->
+<div class="mt-8 text-center">
+  <p class="text-gray-500 italic text-sm">
+    * Queste regole sono non-negoziabili e soggette a modifiche unilaterali senza preavviso.
+  </p>
+</div>

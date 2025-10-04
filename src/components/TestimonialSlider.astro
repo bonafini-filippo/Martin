@@ -1,0 +1,193 @@
+---
+// Testimonianze (inventate) su Martin
+// Recensioni ironiche da "umani servitori"
+
+const testimonials = [
+  {
+    name: "Alessandro R.",
+    role: "Maggiordomo ufficiale",
+    rating: 2,
+    text: "Martin è... particolare. Mi sveglia alle 6 AM in punto, poi mi ignora per tutto il giorno. Ma quando fa le fusa, dimentico tutto. 2/5 stelle ma lo amo comunque.",
+    avatar: "👨"
+  },
+  {
+    name: "Giulia M.",
+    role: "Umana tollerata",
+    rating: 1,
+    text: "Mi ha graffiato 3 volte questa settimana. Una volta stavo solo camminando. Non so perché sto scrivendo una recensione positiva. Aiuto.",
+    avatar: "👩"
+  },
+  {
+    name: "Marco T.",
+    role: "Ex-proprietario (ora proprietà di Martin)",
+    rating: 5,
+    text: "Pensavo di aver adottato un gatto. In realtà Martin ha adottato me. E la casa. E la mia dignità. 5 stelle perché ha detto di scriverlo.",
+    avatar: "🧑"
+  },
+  {
+    name: "Sofia L.",
+    role: "Addetta alle coccole (non autorizzata)",
+    rating: 3,
+    text: "Ho provato ad accarezzarlo. Una volta. Nel 2019. Sto ancora aspettando il permesso per la seconda volta.",
+    avatar: "👱‍♀️"
+  },
+  {
+    name: "Luca B.",
+    role: "Fornitore di croccantini premium",
+    rating: 4,
+    text: "Compro cibo costosissimo. Martin lo annusa e se ne va. Poi mangia dalla spazzatura. Ma è bellissimo quindi va bene.",
+    avatar: "🧔"
+  },
+  {
+    name: "Chiara P.",
+    role: "Veterinaria traumatizzata",
+    rating: 1,
+    text: "Caso clinico più difficile della mia carriera. Non per problemi medici, solo perché odia tutti. Especially me.",
+    avatar: "👩‍⚕️"
+  }
+];
+---
+
+<div class="relative max-w-4xl mx-auto">
+  <!-- Slider Container -->
+  <div class="overflow-hidden">
+    <div id="testimonials-track" class="flex transition-transform duration-500 ease-in-out">
+      {testimonials.map((testimonial) => (
+        <div class="testimonial-slide w-full flex-shrink-0 px-4">
+          <div class="bg-gray-900 border border-amber-500/20 rounded-2xl p-8 md:p-12 hover:border-amber-500/40 transition-all duration-300">
+            {/* Stars Rating */}
+            <div class="flex justify-center gap-1 mb-6">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg
+                  class={`w-6 h-6 ${star <= testimonial.rating ? 'text-amber-400' : 'text-gray-600'}`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+
+            {/* Quote */}
+            <blockquote class="text-gray-300 text-lg md:text-xl italic text-center mb-8 leading-relaxed">
+              "{testimonial.text}"
+            </blockquote>
+
+            {/* Author */}
+            <div class="flex items-center justify-center gap-4">
+              <div class="text-5xl">
+                {testimonial.avatar}
+              </div>
+              <div class="text-left">
+                <div class="font-bold text-white text-lg">
+                  {testimonial.name}
+                </div>
+                <div class="text-amber-400 text-sm">
+                  {testimonial.role}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Navigation Arrows */}
+  <button
+    id="prev-testimonial"
+    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-gray-900 border border-amber-500/30 text-amber-500 p-3 rounded-full hover:bg-gray-800 hover:border-amber-500 transition-all duration-300 hover:scale-110 transform z-10"
+    aria-label="Testimonianza precedente"
+  >
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <button
+    id="next-testimonial"
+    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-gray-900 border border-amber-500/30 text-amber-500 p-3 rounded-full hover:bg-gray-800 hover:border-amber-500 transition-all duration-300 hover:scale-110 transform z-10"
+    aria-label="Testimonianza successiva"
+  >
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  {/* Dots Navigation */}
+  <div class="flex justify-center gap-2 mt-8">
+    {testimonials.map((_, index) => (
+      <button
+        class="testimonial-dot w-2 h-2 rounded-full bg-amber-500/30 hover:bg-amber-500/60 transition-all duration-300"
+        data-index={index}
+        aria-label={`Vai alla testimonianza ${index + 1}`}
+      >
+      </button>
+    ))}
+  </div>
+
+  {/* Disclaimer */}
+  <div class="mt-8 text-center">
+    <p class="text-gray-500 text-sm italic">
+      * Tutte le testimonianze sono vere. O forse no. Martin non conferma né smentisce.
+    </p>
+  </div>
+</div>
+
+<script>
+  let currentTestimonial = 0;
+  const totalTestimonials = document.querySelectorAll('.testimonial-slide').length;
+  const track = document.getElementById('testimonials-track');
+  const dots = document.querySelectorAll('.testimonial-dot');
+
+  function updateTestimonial(index: number) {
+    if (track) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove('bg-amber-500/30', 'w-2');
+        dot.classList.add('bg-amber-500', 'w-8');
+      } else {
+        dot.classList.remove('bg-amber-500', 'w-8');
+        dot.classList.add('bg-amber-500/30', 'w-2');
+      }
+    });
+  }
+
+  function nextTestimonial() {
+    currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+    updateTestimonial(currentTestimonial);
+  }
+
+  function prevTestimonial() {
+    currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+    updateTestimonial(currentTestimonial);
+  }
+
+  // Event listeners
+  document.getElementById('next-testimonial')?.addEventListener('click', nextTestimonial);
+  document.getElementById('prev-testimonial')?.addEventListener('click', prevTestimonial);
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentTestimonial = index;
+      updateTestimonial(currentTestimonial);
+    });
+  });
+
+  // Auto-play
+  let autoPlay = setInterval(nextTestimonial, 6000);
+
+  // Pause on hover
+  const container = document.querySelector('.overflow-hidden');
+  container?.addEventListener('mouseenter', () => clearInterval(autoPlay));
+  container?.addEventListener('mouseleave', () => {
+    autoPlay = setInterval(nextTestimonial, 6000);
+  });
+
+  // Initialize
+  updateTestimonial(0);
+</script>

@@ -1,0 +1,112 @@
+---
+// Il Programma Giornaliero di Martin
+// Timeline dettagliata e ironica della giornata perfetta
+
+const schedule = [
+  { time: "06:00", activity: "Sveglia umani", description: "Miagolare insistentemente e camminare sulla loro faccia", icon: "🌅" },
+  { time: "06:30", activity: "Colazione", description: "Ispezionare criticamente il cibo e fingere non piaccia", icon: "🍽️" },
+  { time: "07:00", activity: "Pisolino post-colazione", description: "Digestione in modalità reale", icon: "😴" },
+  { time: "09:00", activity: "Pattugliamento territorio", description: "Controllare che tutto sia ancora sotto il mio dominio", icon: "🚶" },
+  { time: "10:00", activity: "Pisolino mid-morning", description: "Pattugliare stanca", icon: "💤" },
+  { time: "12:00", activity: "Spuntino", description: "Croccantini. Ora. Subito.", icon: "🥘" },
+  { time: "12:30", activity: "Grooming session", description: "Devo rimanere impeccabile", icon: "✨" },
+  { time: "13:00", activity: "Pisolino pomeridiano", description: "La bellezza richiede riposo", icon: "😴" },
+  { time: "16:00", activity: "Zoomies casuali", description: "Corsa folle senza motivo apparente", icon: "💨" },
+  { time: "17:00", activity: "Contemplazione", description: "Fissare il vuoto giudicando l'umanità", icon: "🤔" },
+  { time: "18:00", activity: "Cena", description: "Meglio essere puntuale o ci saranno conseguenze", icon: "🍖" },
+  { time: "19:00", activity: "Pisolino serale", description: "Cena richiede riposo", icon: "😪" },
+  { time: "21:00", activity: "Momento affetto", description: "5 minuti di coccole (se mi va)", icon: "❤️" },
+  { time: "22:00", activity: "Caccia notturna", description: "Inseguire ombre e insetti immaginari", icon: "🦗" },
+  { time: "03:00", activity: "Zoomies notturne", description: "L'ora perfetta per correre come un pazzo", icon: "🏃" },
+  { time: "04:00", activity: "Sonno profondo", description: "Finalmente pace", icon: "🌙" }
+];
+---
+
+<div class="max-w-5xl mx-auto">
+  <!-- Timeline -->
+  <div class="relative">
+    <!-- Linea verticale centrale -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-500/50 via-amber-500/30 to-amber-500/50"></div>
+
+    <!-- Eventi -->
+    <div class="space-y-12">
+      {schedule.map((item, index) => {
+        const isLeft = index % 2 === 0;
+        return (
+          <div class={`relative flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'} gap-8`}>
+            {/* Card evento */}
+            <div class={`w-5/12 ${isLeft ? 'text-right' : 'text-left'}`}>
+              <div class="group bg-gray-900 border border-amber-500/20 rounded-xl p-6 hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-amber-500/20">
+                {/* Icon */}
+                <div class={`text-5xl mb-3 ${isLeft ? 'text-right' : 'text-left'} group-hover:scale-110 transition-transform duration-300`}>
+                  {item.icon}
+                </div>
+
+                {/* Orario */}
+                <div class="text-amber-400 font-bold text-2xl mb-2">
+                  {item.time}
+                </div>
+
+                {/* Attività */}
+                <h3 class="text-white font-bold text-lg mb-2">
+                  {item.activity}
+                </h3>
+
+                {/* Descrizione */}
+                <p class="text-gray-400 text-sm italic">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+
+            {/* Pallino centrale */}
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-amber-500 rounded-full border-4 border-gray-950 z-10 group-hover:scale-125 transition-transform duration-300 shadow-lg shadow-amber-500/50">
+            </div>
+
+            {/* Spazio vuoto dall'altra parte */}
+            <div class="w-5/12"></div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Note a piè di pagina -->
+  <div class="mt-12 text-center p-6 bg-gray-900/50 border border-amber-500/10 rounded-xl">
+    <p class="text-gray-400 text-sm italic">
+      * Gli orari sono indicativi. Martin si riserva il diritto di modificare il programma a suo piacimento.
+    </p>
+    <p class="text-gray-500 text-xs mt-2">
+      ** Totale ore di sonno: ~18h. Totale ore produttive: discusso.
+    </p>
+  </div>
+</div>
+
+<style>
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .absolute.left-1\/2 {
+      left: 2rem;
+    }
+
+    .flex-row,
+    .flex-row-reverse {
+      flex-direction: row !important;
+      text-align: left !important;
+    }
+
+    .w-5\/12 {
+      width: calc(100% - 6rem);
+      margin-left: 3rem;
+      text-align: left !important;
+    }
+
+    .w-5\/12:last-child {
+      display: none;
+    }
+
+    .text-right {
+      text-align: left !important;
+    }
+  }
+</style>

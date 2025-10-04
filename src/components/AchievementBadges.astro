@@ -1,0 +1,160 @@
+---
+// Achievement Badges di Martin
+// Traguardi felini raggiunti con orgoglio (e sarcasmo)
+
+const achievements = [
+  {
+    icon: "🏆",
+    title: "Master of Naps",
+    description: "20+ ore di sonno giornaliero",
+    rarity: "legendary",
+    unlocked: true
+  },
+  {
+    icon: "🎯",
+    title: "Expert Ignorer",
+    description: "Ignorato 1000+ chiamate umane",
+    rarity: "epic",
+    unlocked: true
+  },
+  {
+    icon: "💎",
+    title: "Flawless Beauty",
+    description: "Nato perfetto, morirò perfetto",
+    rarity: "legendary",
+    unlocked: true
+  },
+  {
+    icon: "👑",
+    title: "Supreme Ruler",
+    description: "Casa completamente conquistata",
+    rarity: "legendary",
+    unlocked: true
+  },
+  {
+    icon: "🎪",
+    title: "3AM Zoomies Champion",
+    description: "100+ corse notturne completate",
+    rarity: "epic",
+    unlocked: true
+  },
+  {
+    icon: "🍽️",
+    title: "Gourmet Critic",
+    description: "Rifiutato cibo costoso, preferito bustina economica",
+    rarity: "rare",
+    unlocked: true
+  },
+  {
+    icon: "📦",
+    title: "Box Connoisseur",
+    description: "Testato 50+ scatole di cartone",
+    rarity: "rare",
+    unlocked: true
+  },
+  {
+    icon: "🔔",
+    title: "Silent Treatment Pro",
+    description: "7 giorni consecutivi di mutismo",
+    rarity: "epic",
+    unlocked: true
+  },
+  {
+    icon: "🎭",
+    title: "Drama Queen",
+    description: "Recitato fame mentre la ciotola era piena",
+    rarity: "rare",
+    unlocked: true
+  }
+];
+
+// Colori per rarità
+const rarityColors: Record<string, {border: string, bg: string, text: string, glow: string}> = {
+  legendary: {
+    border: "border-amber-500",
+    bg: "from-amber-500/20 to-orange-500/20",
+    text: "text-amber-400",
+    glow: "shadow-amber-500/30"
+  },
+  epic: {
+    border: "border-purple-500",
+    bg: "from-purple-500/20 to-pink-500/20",
+    text: "text-purple-400",
+    glow: "shadow-purple-500/30"
+  },
+  rare: {
+    border: "border-blue-500",
+    bg: "from-blue-500/20 to-cyan-500/20",
+    text: "text-blue-400",
+    glow: "shadow-blue-500/30"
+  }
+};
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {achievements.map((achievement) => {
+    const colors = rarityColors[achievement.rarity];
+    return (
+      <div
+        class={`group relative bg-gradient-to-br ${colors.bg} border-2 ${colors.border} rounded-xl p-6 transition-all duration-300 hover:scale-105 transform ${colors.glow} hover:shadow-xl overflow-hidden`}
+      >
+        {/* Badge ribbon */}
+        <div class={`absolute top-0 right-0 px-3 py-1 ${colors.bg} ${colors.border} border-l-2 border-b-2 rounded-bl-lg`}>
+          <span class={`text-xs font-bold uppercase ${colors.text}`}>
+            {achievement.rarity}
+          </span>
+        </div>
+
+        {/* Effetto glow al hover */}
+        <div class={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${colors.bg} blur-xl -z-10`}></div>
+
+        {/* Icona */}
+        <div class="text-6xl mb-4 text-center group-hover:scale-110 transition-transform duration-300">
+          {achievement.icon}
+        </div>
+
+        {/* Titolo */}
+        <h3 class={`text-lg font-bold text-center mb-2 ${colors.text}`}>
+          {achievement.title}
+        </h3>
+
+        {/* Descrizione */}
+        <p class="text-gray-300 text-sm text-center leading-relaxed">
+          {achievement.description}
+        </p>
+
+        {/* Badge "Unlocked" */}
+        {achievement.unlocked && (
+          <div class="mt-4 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-green-400 text-xs font-medium">UNLOCKED</span>
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+<!-- Stats riassuntivi -->
+<div class="mt-12 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+  <div class="text-center p-4 bg-gray-900 border border-amber-500/20 rounded-xl">
+    <div class="text-3xl font-bold text-amber-400">{achievements.filter(a => a.rarity === 'legendary').length}</div>
+    <div class="text-sm text-gray-400 mt-1">Legendary</div>
+  </div>
+  <div class="text-center p-4 bg-gray-900 border border-purple-500/20 rounded-xl">
+    <div class="text-3xl font-bold text-purple-400">{achievements.filter(a => a.rarity === 'epic').length}</div>
+    <div class="text-sm text-gray-400 mt-1">Epic</div>
+  </div>
+  <div class="text-center p-4 bg-gray-900 border border-blue-500/20 rounded-xl">
+    <div class="text-3xl font-bold text-blue-400">{achievements.filter(a => a.rarity === 'rare').length}</div>
+    <div class="text-sm text-gray-400 mt-1">Rare</div>
+  </div>
+</div>
+
+<div class="text-center mt-6">
+  <p class="text-gray-500 text-sm italic">
+    Tutti sbloccati perché sono naturalmente superiore. Ovvio.
+  </p>
+</div>
